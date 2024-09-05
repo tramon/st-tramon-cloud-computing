@@ -12,10 +12,11 @@
         <th>"task"</th>
     </tr>
     <tbody>
-    {% for task in objects %}
+    {% for object in objects %}
     <tr>
-        {% for k, val in task.items() %}
-        <td>{{val}}</td>
+        {% for id, task in object.dataset() %}
+        <td>{{id}}</td>
+        <td>{{task}}</td>
         {% endfor %}
     </tr>
     {% endfor %}
