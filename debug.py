@@ -5,9 +5,9 @@ if __name__ == "__main__":
     dao.connect_to_db()
     dataset = dao.read_all()
 
-    msg = "Message:\n"
+    msg = "Message:"
     for data in dataset:
-        msg += data.__str__() + "\n"
+        msg += data.__str__()
     print(msg)
 
     dao.close()

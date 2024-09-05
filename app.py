@@ -12,9 +12,10 @@ def home():
     dao.connect_to_db()
     dataset = dao.read_all()
 
-    msg = "Message:\n"
+    br = "<br>"
+    msg = "<h2>Message:</h2>" + br
     for data in dataset:
-        msg += data.__str__() + "\n"
+        msg += data.__str__() + br
 
     return render_template('index.html', message=msg)
 
