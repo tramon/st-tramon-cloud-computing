@@ -13,8 +13,6 @@ def home():
     dao.connect_to_db()
     dataset = dao.read_all()
 
-    tasks = dataset.get()
-
     return render_template('index.html', objects=dataset)
 
 
