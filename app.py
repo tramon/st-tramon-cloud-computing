@@ -1,7 +1,8 @@
 from flask import Flask
-from flask import request
+from flask import request, redirect, url_for
 from flask import render_template
 from db.Dao import Dao
+import urllib
 
 app = Flask(__name__)
 
@@ -30,6 +31,14 @@ def delete():
     dao.connect_to_db()
     dao.delete_by_id(id_to_delete)
     home()
+
+
+@app.route('/make-request')
+def make_request():
+    link = request.args.get('https://st-tramon-cloud-computing-web.onrender.com')
+    if link:
+        urllib.urlopen(link)
+    return redirect(request.referrer)
 
 
 if __name__ == "__main__":

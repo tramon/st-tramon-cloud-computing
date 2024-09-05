@@ -6,10 +6,25 @@
 <body>
 <h1>Tramon Flask Python App for a Cloud Computing course</h1>
 {% if objects %}
+<br>
+<form action="/add" method="POST">
+    <label>
+        <input type="text" name="add" placeholder="add task"/>
+    </label>
+    <button type="submit">Submit</button>
+</form>
+<br>
+<form action="/delete" method="DELETE">
+    <label>
+        <input type="number" name="delete" placeholder="delete task by id"/>
+    </label>
+    <button type="submit">Submit</button>
+</form>
+
 <table>
     <tr>
-        <th>"id"</th>
-        <th>"task"</th>
+        <th>id</th>
+        <th>task</th>
     </tr>
     <tbody>
     {% for task in objects %}
@@ -21,19 +36,5 @@
     </tbody>
 </table>
 {% endif %}
-<br>
-<form action="/add" method="POST">
-    <label>
-        <input type="text" name="add" placeholder="add task"/>
-    </label>
-    <button type="submit">Submit</button>
-</form>
-<br>
-<form action="/delete" method="DELETE">
-    <label>
-        <input type="text" name="delete" placeholder="delete task by id"/>
-    </label>
-    <button type="submit">Submit</button>
-</form>
 </body>
 </html>
