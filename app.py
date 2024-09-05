@@ -21,16 +21,16 @@ def add():
     if task_to_add is not "":
         dao.connect_to_db()
         dao.insert_without_id(task_to_add)
-        return redirect(request.referrer)
+    return redirect(request.referrer)
 
 
 @app.route("/delete", methods=['POST'])
 def delete():
     id_to_delete = request.form['delete']
-    if id_to_delete is not "":
+    if id_to_delete.isdigit():
         dao.connect_to_db()
         dao.delete_by_id(id_to_delete)
-        return redirect(request.referrer)
+    return redirect(request.referrer)
 
 
 if __name__ == "__main__":
