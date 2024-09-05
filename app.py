@@ -10,11 +10,11 @@ app = Flask(__name__)
 def home():
     dao = Dao()
     dao.connect_to_db()
-    data_set = dao.read_all()
-    msg = "Message: \n"
+    dataset = dao.read_all()
 
-    for data in data_set:
-        msg += data + "\n"
+    msg = "Message:\n"
+    for data in dataset:
+        msg += data.__str__() + "\n"
 
     return render_template('index.html', message=msg)
 
