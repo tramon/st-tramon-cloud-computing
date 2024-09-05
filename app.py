@@ -25,7 +25,7 @@ def add():
     home()
 
 
-@app.route("/delete", methods=['DELETE'])
+@app.route("/delete", methods=['POST'])
 def delete():
     id_to_delete = request.form['delete']
     dao.connect_to_db()
@@ -35,10 +35,11 @@ def delete():
 
 @app.route('/make-request')
 def make_request():
-    link = request.args.get('https://st-tramon-cloud-computing-web.onrender.com')
+    base_url = "https://st-tramon-cloud-computing-web.onrender.com"
+    link = request.args.get(base_url)
     if link:
         urllib.urlopen(link)
-    return redirect(request.referrer)
+    return redirect(request.referrer or url_for(base_url))
 
 
 if __name__ == "__main__":
