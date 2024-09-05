@@ -5,29 +5,30 @@ from db.Dao import Dao
 
 app = Flask(__name__)
 
+dao = Dao()
+
 
 @app.route("/", methods=['GET'])
 def home():
-    dao = Dao()
     dao.connect_to_db()
     dataset = dao.read_all()
-
-    br = "<br>"
-    msg = "<h2>Message:</h2>" + br
-    for data in dataset:
-        msg += data.__str__() + br
-
-    return render_template('index.html', message=msg)
+    return render_template('index.html', objects=dataset)
 
 
 @app.route("/add", methods=['POST'])
 def add():
-    task = request.form['task']
-
-    dao = Dao()
+    task_to_add = request.form['add']
     dao.connect_to_db()
-    dao.insert_without_id(task)
-    dao.close()
+    dao.insert_without_id(task_to_add)
+    home()
+
+
+@app.route("/delete", methods=['DELETE'])
+def delete():
+    id_to_delete = request.form['delete']
+    dao.connect_to_db()
+    dao.delete_by_id(id_to_delete)
+    home()
 
 
 if __name__ == "__main__":
