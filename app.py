@@ -28,8 +28,6 @@ def add():
     dao.insert_without_id(task)
     dao.close()
 
-    return f'added: , {task}'
-
 
 if __name__ == "__main__":
     app.run()
