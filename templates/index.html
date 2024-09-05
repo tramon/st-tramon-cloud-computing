@@ -11,21 +11,25 @@
 </head>
 <body>
 <h1>Tramon Flask Python App for a Cloud Computing course</h1>
+<h2>a TODO list of tasks</h2>
 {% if objects %}
 <br>
 <form action="/add" method="POST">
     <label>
+        Add task:
         <input type="text" name="add" placeholder="add task"/>
     </label>
-    <button type="submit">Submit</button>
+    <button type="submit">Add</button>
 </form>
 <br>
 <form action="/delete" method="POST">
     <label>
+        Delete task:
         <input type="number" name="delete" placeholder="delete task by id"/>
     </label>
-    <button type="submit">Submit</button>
+    <button type="submit">Delete</button>
 </form>
+<br>
 <br>
 <table>
     <tr>
