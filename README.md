@@ -20,8 +20,8 @@
   ```
 
 ##### Useful links and materials used:
- https://melbdataguy.medium.com/deploying-python-applications-for-free-using-render-90d7a0442dd4
- https://docs.python.org/3.11/using/windows.html
- https://www.python.org/downloads/release/python-3117/
- https://github.com/psycopg/psycopg#readme
- https://www.youtube.com/watch?v=_COyD1CExKU
+ - https://melbdataguy.medium.com/deploying-python-applications-for-free-using-render-90d7a0442dd4
+ - https://docs.python.org/3.11/using/windows.html
+ - https://www.python.org/downloads/release/python-3117/
+ - https://github.com/psycopg/psycopg#readme
+ - https://www.youtube.com/watch?v=_COyD1CExKU
