@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask import request, redirect
 from flask import render_template
 from db.Dao import Dao
@@ -13,6 +13,13 @@ def home():
     dao.connect_to_db()
     dataset = dao.read_all()
     return render_template('index.html', objects=dataset)
+
+
+@app.route("/get", methods=['GET'])
+def get():
+    dao.connect_to_db()
+    dataset = dao.read_all()
+    return jsonify(dataset)
 
 
 @app.route("/add", methods=['POST'])

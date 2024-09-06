@@ -1,6 +1,7 @@
 import psycopg
 
 
+# Data access object
 class Dao:
     dbname = "tramonpostgresdb"
     user = "admin"
