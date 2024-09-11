@@ -11,7 +11,7 @@ class Dao:
     host = os.environ.get('DB_HOST')
     port = os.environ.get('DB_PORT')
 
-    table_name_tasks = 'public.tasks'
+    table_name_tasks = 'tasks'
     field_id = 'id'
     field_task = 'task'
 
