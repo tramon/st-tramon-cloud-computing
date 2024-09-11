@@ -33,7 +33,9 @@ class Dao:
         return Dao.cursor
 
     @staticmethod
-    def read_all(select_all_query="SELECT * FROM tasks"):
+    def read_all(select_all_query="SELECT * FROM tasks "
+                                  "ORDER BY id "
+                                  "FETCH FIRST 100 ROWS WITH TIES"):
         dataset = Dao.cursor.execute(select_all_query).fetchall()
         return dataset
 
