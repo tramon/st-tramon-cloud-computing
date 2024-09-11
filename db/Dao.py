@@ -1,13 +1,19 @@
 import psycopg
+from psycopg import sql
+import os
 
 
 # Data access object
 class Dao:
-    dbname = "tramonpostgresdb"
-    user = "admin"
-    password = "ucslxW6OUGlZEe9RLzAckFlbb6stDih9"
-    host = "dpg-crc0cdd6l47c73d9spm0-a.frankfurt-postgres.render.com"
-    port = "5432"
+    dbname = os.environ.get('DB_NAME')
+    user = os.environ.get('DB_USER')
+    password = os.environ.get('DB_PASSWORD')
+    host = os.environ.get('DB_HOST')
+    port = os.environ.get('DB_PORT')
+
+    table_name_tasks = "public.tasks"
+    field_id = "id"
+    field_task = "task"
 
     cursor = None
     connection = None
@@ -32,24 +38,29 @@ class Dao:
         return dataset
 
     @staticmethod
-    def insert(id, task):
-        insert_query_mask = "INSERT INTO public.tasks (id, task) VALUES ({0}, '{1}')"
-        insert_query = insert_query_mask.format(id, task)
-        Dao.cursor.execute(insert_query)
+    def insert(task_id, task):
+        query_insert_with_id = sql.SQL("INSERT INTO {table} ({fields}) VALUES (%s, %s)").format(
+            table=sql.Identifier(Dao.table_name_tasks),
+            fields=sql.SQL(",").join([
+                sql.Identifier(Dao.field_id),
+                sql.Identifier(Dao.field_task)]))
+        Dao.cursor.execute(query_insert_with_id, task_id, task)
         Dao.connection.commit()
 
     @staticmethod
     def insert_without_id(task):
-        insert_query_without_id_mask = "INSERT INTO public.tasks (task) VALUES ('{0}')"
-        insert_query = insert_query_without_id_mask.format(task)
-        Dao.cursor.execute(insert_query)
+        query_add_task = sql.SQL("INSERT INTO {table} ({field}) VALUES ('%s')").format(
+            table=sql.Identifier(Dao.table_name_tasks),
+            field=sql.Identifier(Dao.field_task))
+        Dao.cursor.execute(query_add_task, task)
         Dao.connection.commit()
 
     @staticmethod
-    def delete_by_id(id):
-        delete_query_mask = "DELETE FROM tasks WHERE id = {0}"
-        delete_query = delete_query_mask.format(id)
-        Dao.cursor.execute(delete_query)
+    def delete_by_id(task_id):
+        query_delete_task_by_id = sql.SQL("DELETE FROM {table} WHERE {field} = %s").format(
+            table=sql.Identifier(Dao.table_name_tasks),
+            field=sql.Identifier(Dao.field_task))
+        Dao.cursor.execute(query_delete_task_by_id, task_id)
         Dao.connection.commit()
 
     @staticmethod
