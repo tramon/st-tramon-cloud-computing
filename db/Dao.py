@@ -59,7 +59,7 @@ class Dao:
     def delete_by_id(task_id):
         query_delete_task_by_id = sql.SQL("DELETE FROM {table} WHERE {field} = %s").format(
             table=sql.Identifier(Dao.table_name_tasks),
-            field=sql.Identifier(Dao.field_task))
+            field=sql.Identifier(Dao.field_id))
         Dao.cursor.execute(query_delete_task_by_id, [task_id])
         Dao.connection.commit()
 
