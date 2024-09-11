@@ -52,7 +52,7 @@ class Dao:
         query_add_task = sql.SQL("INSERT INTO {table} ({field}) VALUES (%s)").format(
             table=sql.Identifier(Dao.table_name_tasks),
             field=sql.Identifier(Dao.field_task))
-        Dao.cursor.execute(query_add_task, task)
+        Dao.cursor.execute(query_add_task, [task])
         Dao.connection.commit()
 
     @staticmethod
