@@ -13,6 +13,7 @@
 - Flask
 - psycopg
 - Gunicorn
+- Jinja2
 - Intellij IDEA
 - dBeaver
 - Postman
@@ -29,13 +30,16 @@
 
 ##### Useful links and materials used:
 
+- https://docs.python.org/3.11/using/windows.html
+- https://www.python.org/downloads/release/python-3117/
 - https://docs.render.com/deploy-flask
+- https://docs.render.com/configure-environment-variables
 - https://flask.palletsprojects.com/en/3.0.x/
+- https://www.psycopg.org/docs/sql.html
+- https://jinja.palletsprojects.com/en/3.1.x/
 - https://tembo.io/docs/getting-started/postgres_guides/connecting-to-postgres-with-python
 - https://melbdataguy.medium.com/deploying-python-applications-for-free-using-render-90d7a0442dd4
 - https://medium.com/@dattu1993/creating-a-web-application-with-python-a-comprehensive-guide-for-beginners-db59df5867e4
-- https://docs.python.org/3.11/using/windows.html
-- https://www.python.org/downloads/release/python-3117/
 - https://github.com/psycopg/psycopg#readme
 - https://www.youtube.com/watch?v=_COyD1CExKU
 - https://stackoverflow.com/questions/61620432/formatting-flask-table-output-with-html-on-python
