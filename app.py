@@ -41,9 +41,17 @@ def get_all():
     return json_dataset
 
 
-@app.route("/api/success", methods=['GET'])
-def get_mocked_success():
-    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
+@app.route("/api/put", methods=['POST'])
+def put():
+    task_to_add = request.form['put']
+    if task_to_add is not "":
+        dao.connect_to_db()
+        dao.insert_without_id(task_to_add)
+        return return_success(201)
+
+
+def return_success(status_code=200):
+    return json.dumps({'success': True}), status_code, {'ContentType': 'application/json'}
 
 
 if __name__ == "__main__":
