@@ -38,7 +38,7 @@ def get_all():
 
 
 @app.route("/api/test", methods=['GET'])
-def get_all():
+def test():
     return dao.execute_test()
 
 
