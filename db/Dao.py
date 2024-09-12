@@ -37,18 +37,10 @@ class Dao:
         return Dao.cursor
 
     @staticmethod
-    def read_all(select_all_query="SELECT * FROM tasks "
-                                  "ORDER BY id "
-                                  "FETCH FIRST 100 ROWS WITH TIES"):
-        dataset = Dao.cursor.execute(select_all_query).fetchall()
-        return dataset
-
-    @staticmethod
-    def read_to_json(select_all_query="SELECT * FROM tasks "
+    def read_top_100(select_all_query="SELECT * FROM tasks "
                                       "ORDER BY id "
                                       "FETCH FIRST 100 ROWS WITH TIES"):
-        dataset = json.dumps(Dao.cursor.execute(select_all_query).fetchall())
-        return dataset
+        return Dao.cursor.execute(select_all_query).fetchall()
 
     @staticmethod
     def insert(task_id, task):

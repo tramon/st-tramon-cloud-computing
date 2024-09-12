@@ -11,20 +11,22 @@ dao = Dao()
 @app.route("/", methods=['GET'])
 def home_old():
     dao.connect_to_db()
-    dataset = dao.read_all()
-    return render_template('index.html', objects=dataset)
+    json = dao.read_top_100()
+    return render_template('index.html', objects=json)
 
 
 @app.route("/home", methods=['GET'])
 def home():
-    json = dao.read_to_json()
+    dao.connect_to_db()
+    json = dao.read_top_100()
+    dao.close()
     return json
 
 
 @app.route("/get", methods=['GET'])
 def get():
     dao.connect_to_db()
-    dataset = dao.read_all()
+    dataset = dao.read_top_100()
     return jsonify(dataset)
 
 

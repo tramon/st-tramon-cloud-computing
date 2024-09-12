@@ -9,7 +9,7 @@ dao = Dao()
 @app.route("/api/get", methods=['GET'])
 def get_all():
     dao.connect_to_db()
-    dataset = dao.read_all()
+    dataset = dao.read_top_100()
     return jsonify(dataset)
 
 
