@@ -56,7 +56,7 @@ def delete():
     if id_to_delete.isdigit():
         dao.connect_to_db()
         dao.delete_by_id(id_to_delete)
-        return return_success()
+        return return_success(200)
 
 
 def return_success(status_code=200):
