@@ -6,14 +6,14 @@ app = Flask(__name__)
 dao = Dao()
 
 
-@app.route("api/get", methods=['GET'])
+@app.route("/api/get", methods=['GET'])
 def get_all():
     dao.connect_to_db()
     dataset = dao.read_all()
     return jsonify(dataset)
 
 
-@app.route("api/put", methods=['PUT'])
+@app.route("/api/put", methods=['PUT'])
 def put():
     task_to_add = request.form['put']
     if task_to_add is not "":
@@ -21,7 +21,7 @@ def put():
         dao.insert_without_id(task_to_add)
 
 
-@app.route("api/delete", methods=['DELETE'])
+@app.route("/api/delete", methods=['DELETE'])
 def delete():
     id_to_delete = request.form['delete']
     if id_to_delete.isdigit():
