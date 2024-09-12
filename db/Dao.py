@@ -64,6 +64,21 @@ class Dao:
         Dao.cursor.execute(query_delete_task_by_id, [task_id])
         Dao.connection.commit()
 
+    @staticmethod
+    def execute_test(select_all_query="SELECT * FROM tasks "
+                                      "ORDER BY id "
+                                      "FETCH FIRST 100 ROWS WITH TIES"):
+        with psycopg.connect(
+                dbname=Dao.dbname,
+                user=Dao.user,
+                password=Dao.password,
+                host=Dao.host,
+                port=Dao.port
+        ) as conn:
+            with conn.cursor() as cur:
+                cur.row_factory = class_row(Tasks)
+        return cur.execute(select_all_query).fetchall()
+
 
 @dataclass
 class Tasks:
