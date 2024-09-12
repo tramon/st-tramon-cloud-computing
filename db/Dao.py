@@ -20,30 +20,19 @@ class Dao:
     cursor = None
     connection = None
 
-    # def __init__(self):
-    #     Dao.connection = psycopg.connect(
-    #         dbname=Dao.dbname,
-    #         user=Dao.user,
-    #         password=Dao.password,
-    #         host=Dao.host,
-    #         port=Dao.port
-    #     )
+    def __init__(self):
+        Dao.connection = psycopg.connect(
+            dbname=Dao.dbname,
+            user=Dao.user,
+            password=Dao.password,
+            host=Dao.host,
+            port=Dao.port
+        )
 
     @staticmethod
     def connect_to_db():
-        with psycopg.connect(
-                dbname=Dao.dbname,
-                user=Dao.user,
-                password=Dao.password,
-                host=Dao.host,
-                port=Dao.port
-        ) as conn:
-            Dao.connection = conn
-
-            with Dao.connection.cursor() as cur:
-                Dao.cursor = cur
-                # Dao.cursor = Dao.connection.cursor()
-                Dao.cursor.row_factory = class_row(Tasks)
+        Dao.cursor = Dao.connection.cursor()
+        Dao.cursor.row_factory = class_row(Tasks)
         return Dao.cursor
 
     @staticmethod
@@ -56,7 +45,6 @@ class Dao:
 
     @staticmethod
     def insert(task_id, task):
-        Dao.connect_to_db()
         query_insert_with_id = sql.SQL("INSERT INTO {table} ({fields}) VALUES (%s, %s)").format(
             table=sql.Identifier(Dao.table_name_tasks),
             fields=sql.SQL(",").join([
@@ -67,7 +55,6 @@ class Dao:
 
     @staticmethod
     def insert_without_id(task):
-        Dao.connect_to_db()
         query_add_task = sql.SQL("INSERT INTO {table} ({field}) VALUES (%s)").format(
             table=sql.Identifier(Dao.table_name_tasks),
             field=sql.Identifier(Dao.field_task))
@@ -76,7 +63,6 @@ class Dao:
 
     @staticmethod
     def delete_by_id(task_id):
-        Dao.connect_to_db()
         query_delete_task_by_id = sql.SQL("DELETE FROM {table} WHERE {field} = %s").format(
             table=sql.Identifier(Dao.table_name_tasks),
             field=sql.Identifier(Dao.field_id))
