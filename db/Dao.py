@@ -20,19 +20,30 @@ class Dao:
     cursor = None
     connection = None
 
-    def __init__(self):
-        Dao.connection = psycopg.connect(
-            dbname=Dao.dbname,
-            user=Dao.user,
-            password=Dao.password,
-            host=Dao.host,
-            port=Dao.port
-        )
+    # def __init__(self):
+    #     Dao.connection = psycopg.connect(
+    #         dbname=Dao.dbname,
+    #         user=Dao.user,
+    #         password=Dao.password,
+    #         host=Dao.host,
+    #         port=Dao.port
+    #     )
 
     @staticmethod
     def connect_to_db():
-        Dao.cursor = Dao.connection.cursor()
-        Dao.cursor.row_factory = class_row(Tasks)
+        with psycopg.connect(
+                dbname=Dao.dbname,
+                user=Dao.user,
+                password=Dao.password,
+                host=Dao.host,
+                port=Dao.port
+        ) as conn:
+            Dao.connection = conn
+
+            with Dao.connection.cursor() as cur:
+                Dao.cursor = cur
+                # Dao.cursor = Dao.connection.cursor()
+                Dao.cursor.row_factory = class_row(Tasks)
         return Dao.cursor
 
     @staticmethod
