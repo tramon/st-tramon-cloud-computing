@@ -1,8 +1,7 @@
-import psycopg
-from psycopg import sql
 import os
-
-from psycopg.types import json
+import psycopg
+import json
+from psycopg import sql
 
 
 # Data access object
