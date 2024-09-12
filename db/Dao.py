@@ -66,6 +66,7 @@ class Dao:
             field=sql.Identifier(Dao.field_id))
         Dao.cursor.execute(query_delete_task_by_id, [task_id])
         Dao.connection.commit()
+        Dao.close()
 
     @staticmethod
     def close():
