@@ -37,11 +37,6 @@ def get_all():
     return json_dataset
 
 
-@app.route("/api/test", methods=['GET'])
-def test():
-    return dao.execute_test()
-
-
 @app.route("/api/put", methods=['PUT'])
 def put():
     task_to_add = request.form['put']
