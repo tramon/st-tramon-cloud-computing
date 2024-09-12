@@ -1,16 +1,9 @@
-from flask import Flask, jsonify, request
+from flask import Flask, request
 from db.Dao import Dao
 
 app = Flask(__name__)
 
 dao = Dao()
-
-
-@app.route("/api/get", methods=['GET'])
-def get_all():
-    dao.connect_to_db()
-    dataset = dao.read_top_100()
-    return jsonify(dataset)
 
 
 @app.route("/api/put", methods=['PUT'])
@@ -19,6 +12,7 @@ def put():
     if task_to_add is not "":
         dao.connect_to_db()
         dao.insert_without_id(task_to_add)
+        dao.close()
 
 
 @app.route("/api/delete", methods=['DELETE'])

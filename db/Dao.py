@@ -1,6 +1,5 @@
 import os
 import psycopg
-import json
 from psycopg import sql
 from psycopg.rows import class_row
 from dataclasses import dataclass

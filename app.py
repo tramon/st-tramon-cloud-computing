@@ -19,15 +19,13 @@ def home_old():
 def home():
     dao.connect_to_db()
     json = dao.read_top_100()
-    dao.close()
     return json
 
 
 @app.route("/get", methods=['GET'])
 def get():
     dao.connect_to_db()
-    dataset = dao.read_top_100()
-    return jsonify(dataset)
+    return jsonify(dao.read_top_100())
 
 
 @app.route("/add", methods=['POST'])
@@ -46,6 +44,13 @@ def delete():
         dao.connect_to_db()
         dao.delete_by_id(id_to_delete)
     return redirect(request.referrer)
+
+
+@app.route("/api/get", methods=['GET'])
+def get_all():
+    dao.connect_to_db()
+    json = dao.read_top_100()
+    return json
 
 
 if __name__ == "__main__":
