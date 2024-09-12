@@ -77,7 +77,7 @@ class Dao:
         ) as conn:
             with conn.cursor() as cur:
                 cur.row_factory = class_row(Tasks)
-        return cur.execute(select_all_query).fetchall()
+                return cur.execute(select_all_query).fetchall()
 
 
 @dataclass
