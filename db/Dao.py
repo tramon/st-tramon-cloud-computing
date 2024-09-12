@@ -1,10 +1,9 @@
 import os
-from dataclasses import dataclass
-
 import psycopg
 import json
 from psycopg import sql
 from psycopg.rows import class_row
+from db.model import Tasks
 
 
 # Data access object
@@ -34,7 +33,7 @@ class Dao:
     @staticmethod
     def connect_to_db():
         Dao.cursor = Dao.connection.cursor()
-        Dao.cursor.row_factory = class_row(Task)
+        Dao.cursor.row_factory = class_row(Tasks)
         return Dao.cursor
 
     @staticmethod
@@ -80,9 +79,3 @@ class Dao:
     @staticmethod
     def close():
         Dao.connection.close()
-
-
-@dataclass
-class Task:
-    id: int
-    task: str

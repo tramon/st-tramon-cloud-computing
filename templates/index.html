@@ -37,10 +37,10 @@
         <th>task</th>
     </tr>
     <tbody>
-    {% for task in objects %}
+    {% for tasks in objects %}
     <tr>
-        <td>{{task[0]}}</td>
-        <td>{{task[1]}}</td>
+        <td>{{tasks.id}}</td>
+        <td>{{tasks.task}}</td>
     </tr>
     {% endfor %}
     </tbody>

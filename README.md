@@ -34,8 +34,9 @@
 - https://www.python.org/downloads/release/python-3117/
 - https://docs.render.com/deploy-flask
 - https://docs.render.com/configure-environment-variables
-- https://flask.palletsprojects.com/en/3.0.x/
 - https://www.psycopg.org/docs/sql.html
+- https://www.psycopg.org/psycopg3/docs/advanced/rows.html
+- https://flask.palletsprojects.com/en/3.0.x/
 - https://jinja.palletsprojects.com/en/3.1.x/
 - https://tembo.io/docs/getting-started/postgres_guides/connecting-to-postgres-with-python
 - https://melbdataguy.medium.com/deploying-python-applications-for-free-using-render-90d7a0442dd4
