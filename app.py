@@ -51,12 +51,12 @@ def put():
 
 
 @app.route("/api/delete", methods=['DELETE'])
-def delete():
+def delete_via_api():
     id_to_delete = request.form['delete']
     if id_to_delete.isdigit():
         dao.connect_to_db()
         dao.delete_by_id(id_to_delete)
-        return return_success(200)
+        return return_success()
 
 
 def return_success(status_code=200):
