@@ -3,7 +3,7 @@ import psycopg
 import json
 from psycopg import sql
 from psycopg.rows import class_row
-from db.model import Tasks
+from dataclasses import dataclass
 
 
 # Data access object
@@ -79,3 +79,9 @@ class Dao:
     @staticmethod
     def close():
         Dao.connection.close()
+
+
+@dataclass
+class Tasks:
+    id: int
+    task: str

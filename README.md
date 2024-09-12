@@ -21,10 +21,11 @@
 ### Commands list
 
   ```
-  $  pip install --upgrade pip8 hjrsd ghfw.dfd
+  $  pip install --upgrade pip
   $  pip install psycopg        
   $  pip install flask
   $  pip install gunicorn
+  $  pip install jinja2
   
   ```
 
