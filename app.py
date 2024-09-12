@@ -50,6 +50,15 @@ def put():
         return return_success(201)
 
 
+@app.route("/api/delete", methods=['DELETE'])
+def delete():
+    id_to_delete = request.form['delete']
+    if id_to_delete.isdigit():
+        dao.connect_to_db()
+        dao.delete_by_id(id_to_delete)
+        return return_success()
+
+
 def return_success(status_code=200):
     return json.dumps({'success': True}), status_code, {'ContentType': 'application/json'}
 
