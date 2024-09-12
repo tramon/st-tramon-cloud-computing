@@ -36,13 +36,21 @@ class Dao:
         return Dao.cursor
 
     @staticmethod
+    def close_connection():
+        Dao.connection.close_connection()
+
+    @staticmethod
     def read_top_100(select_all_query="SELECT * FROM tasks "
                                       "ORDER BY id "
                                       "FETCH FIRST 100 ROWS WITH TIES"):
-        return Dao.cursor.execute(select_all_query).fetchall()
+        Dao.connect_to_db()
+        json_data = Dao.cursor.execute(select_all_query).fetchall()
+        Dao.close_connection()
+        return json_data
 
     @staticmethod
     def insert(task_id, task):
+        Dao.connect_to_db()
         query_insert_with_id = sql.SQL("INSERT INTO {table} ({fields}) VALUES (%s, %s)").format(
             table=sql.Identifier(Dao.table_name_tasks),
             fields=sql.SQL(",").join([
@@ -50,27 +58,27 @@ class Dao:
                 sql.Identifier(Dao.field_task)]))
         Dao.cursor.execute(query_insert_with_id, [task_id, task])
         Dao.connection.commit()
+        Dao.close_connection()
 
     @staticmethod
     def insert_without_id(task):
+        Dao.connect_to_db()
         query_add_task = sql.SQL("INSERT INTO {table} ({field}) VALUES (%s)").format(
             table=sql.Identifier(Dao.table_name_tasks),
             field=sql.Identifier(Dao.field_task))
         Dao.cursor.execute(query_add_task, [task])
         Dao.connection.commit()
+        Dao.close_connection()
 
     @staticmethod
     def delete_by_id(task_id):
+        Dao.connect_to_db()
         query_delete_task_by_id = sql.SQL("DELETE FROM {table} WHERE {field} = %s").format(
             table=sql.Identifier(Dao.table_name_tasks),
             field=sql.Identifier(Dao.field_id))
         Dao.cursor.execute(query_delete_task_by_id, [task_id])
         Dao.connection.commit()
-        Dao.close()
-
-    @staticmethod
-    def close():
-        Dao.connection.close()
+        Dao.close_connection()
 
 
 @dataclass

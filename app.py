@@ -11,7 +11,6 @@ dao = Dao()
 
 @app.route("/", methods=['GET'])
 def home():
-    dao.connect_to_db()
     json_dataset = dao.read_top_100()
     return render_template('index.html', objects=json_dataset)
 
@@ -20,7 +19,6 @@ def home():
 def add():
     task_to_add = request.form['add']
     if task_to_add is not "":
-        dao.connect_to_db()
         dao.insert_without_id(task_to_add)
     return redirect(request.referrer)
 
@@ -29,14 +27,12 @@ def add():
 def delete():
     id_to_delete = request.form['delete']
     if id_to_delete.isdigit():
-        dao.connect_to_db()
         dao.delete_by_id(id_to_delete)
     return redirect(request.referrer)
 
 
 @app.route("/api/get", methods=['GET'])
 def get_all():
-    dao.connect_to_db()
     json_dataset = dao.read_top_100()
     return json_dataset
 
@@ -45,7 +41,6 @@ def get_all():
 def put():
     task_to_add = request.form['put']
     if task_to_add is not "":
-        dao.connect_to_db()
         dao.insert_without_id(task_to_add)
         return return_success(201)
 
@@ -54,7 +49,6 @@ def put():
 def delete_via_api():
     id_to_delete = request.form['delete']
     if id_to_delete.isdigit():
-        dao.connect_to_db()
         dao.delete_by_id(id_to_delete)
         return return_success()
 
