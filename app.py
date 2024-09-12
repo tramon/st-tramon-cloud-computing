@@ -41,7 +41,7 @@ def get_all():
     return json_dataset
 
 
-@app.route("/api/put", methods=['POST'])
+@app.route("/api/put", methods=['PUT'])
 def put():
     task_to_add = request.form['put']
     if task_to_add is not "":
