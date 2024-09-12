@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from flask import request, redirect
 from flask import render_template
 from db.Dao import Dao
+import rest.api
 
 app = Flask(__name__)
 
@@ -9,9 +10,15 @@ dao = Dao()
 
 
 @app.route("/", methods=['GET'])
-def home():
+def home_old():
     dao.connect_to_db()
     dataset = dao.read_all()
+    return render_template('index.html', objects=dataset)
+
+
+@app.route("/home", methods=['GET'])
+def home():
+    dataset = rest.api.get_all()
     return render_template('index.html', objects=dataset)
 
 
