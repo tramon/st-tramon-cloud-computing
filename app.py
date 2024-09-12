@@ -1,6 +1,7 @@
-from flask import Flask, jsonify
+from flask import Flask, json
 from flask import request, redirect
 from flask import render_template
+
 from db.Dao import Dao
 
 app = Flask(__name__)
@@ -9,23 +10,10 @@ dao = Dao()
 
 
 @app.route("/", methods=['GET'])
-def home_old():
-    dao.connect_to_db()
-    json = dao.read_top_100()
-    return render_template('index.html', objects=json)
-
-
-@app.route("/home", methods=['GET'])
 def home():
     dao.connect_to_db()
-    json = dao.read_top_100()
-    return json
-
-
-@app.route("/get", methods=['GET'])
-def get():
-    dao.connect_to_db()
-    return jsonify(dao.read_top_100())
+    json_dataset = dao.read_top_100()
+    return render_template('index.html', objects=json_dataset)
 
 
 @app.route("/add", methods=['POST'])
@@ -49,8 +37,13 @@ def delete():
 @app.route("/api/get", methods=['GET'])
 def get_all():
     dao.connect_to_db()
-    json = dao.read_top_100()
-    return json
+    json_dataset = dao.read_top_100()
+    return json_dataset
+
+
+@app.route("/api/success", methods=['GET'])
+def get_mocked_success():
+    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
 
 if __name__ == "__main__":
