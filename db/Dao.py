@@ -28,18 +28,13 @@ class Dao:
             host=Dao.host,
             port=Dao.port
         )
-
-    @staticmethod
-    def connect_to_db():
         Dao.cursor = Dao.connection.cursor()
         Dao.cursor.row_factory = class_row(Tasks)
-        return Dao.cursor
 
     @staticmethod
     def read_top_100(select_all_query="SELECT * FROM tasks "
                                       "ORDER BY id "
                                       "FETCH FIRST 100 ROWS WITH TIES"):
-        Dao.connect_to_db()
         json_data = Dao.cursor.execute(select_all_query).fetchall()
         return json_data
 
