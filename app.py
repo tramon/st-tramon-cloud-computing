@@ -3,6 +3,7 @@ from flask import request, redirect
 from flask import render_template
 import datetime
 
+from calc.calculations import tricky_divide, sum_calculation
 from db.Dao import Dao
 
 app = Flask(__name__)
@@ -50,7 +51,7 @@ def get_calc():
 def calc_sum():
     calc_add_first = request.form['add_one']
     calc_add_second = request.form['add_two']
-    sum_of_two = int(calc_add_first) + int(calc_add_second)
+    sum_of_two = sum_calculation(calc_add_first, calc_add_second)
     return render_template('calc.html', sum_of_two=sum_of_two)
 
 
@@ -87,14 +88,6 @@ def delete_via_api():
 
 def return_success(status_code=200):
     return json.dumps({'success': True}), status_code, {'ContentType': 'application/json'}
-
-
-def sum_calculation(first, second):
-    return int(first) + int(second)
-
-
-def tricky_divide(first, second):
-    return int(first) * int(second)
 
 
 if __name__ == "__main__":

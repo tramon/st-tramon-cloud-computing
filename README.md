@@ -14,6 +14,7 @@
 - psycopg
 - Gunicorn
 - Jinja2
+- pytest
 - Intellij IDEA
 - dBeaver
 - Postman
@@ -26,6 +27,7 @@
   $  pip install flask
   $  pip install gunicorn
   $  pip install jinja2
+  $ python -m pytest -x test_calc.py
   
   ```
 

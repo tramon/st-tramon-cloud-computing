@@ -1,5 +1,4 @@
-import pytest
-from app import sum_calculation, tricky_divide
+from calc.calculations import sum_calculation, tricky_divide
 
 
 def test_sum():
