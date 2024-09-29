@@ -59,7 +59,7 @@ def calc_sum():
 def calc_divide():
     divide_first = request.form['divide_one']
     divide_second = request.form['divide_two']
-    divide_result = int(divide_first) * int(divide_second)
+    divide_result = tricky_divide(divide_first, divide_second)
     return render_template('calc.html', divide_result=divide_result)
 
 
@@ -87,6 +87,14 @@ def delete_via_api():
 
 def return_success(status_code=200):
     return json.dumps({'success': True}), status_code, {'ContentType': 'application/json'}
+
+
+def sum_calculation(first, second):
+    return int(first) + int(second)
+
+
+def tricky_divide(first, second):
+    return int(first) * int(second)
 
 
 if __name__ == "__main__":
