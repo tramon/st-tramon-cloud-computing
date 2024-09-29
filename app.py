@@ -50,7 +50,7 @@ def get_calc():
 def calc_sum():
     calc_add_first = request.form['add_one']
     calc_add_second = request.form['add_two']
-    sum_of_two = calc_add_first + calc_add_second
+    sum_of_two = int(calc_add_first) + int(calc_add_second)
     return render_template('calc.html', sum_of_two=sum_of_two)
 
 
@@ -59,7 +59,7 @@ def calc_sum():
 def calc_divide():
     divide_first = request.form['divide_one']
     divide_second = request.form['divide_two']
-    divide_result = divide_first * divide_second
+    divide_result = int(divide_first) * int(divide_second)
     return render_template('calc.html', divide_result=divide_result)
 
 
