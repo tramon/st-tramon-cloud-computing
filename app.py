@@ -1,6 +1,7 @@
 from flask import Flask, json
 from flask import request, redirect
 from flask import render_template
+import datetime
 
 from db.Dao import Dao
 
@@ -29,6 +30,12 @@ def delete():
     if id_to_delete.isdigit():
         dao.delete_by_id(id_to_delete)
     return redirect(request.referrer)
+
+
+@app.route("/calendar", methods=['GET'])
+def get_calendar():
+    today_date = datetime.datetime.now()
+    return render_template('calendar.html', date=today_date)
 
 
 @app.route("/api/get", methods=['GET'])
