@@ -34,8 +34,9 @@ def delete():
 
 @app.route("/calendar", methods=['GET'])
 def get_calendar():
-    today_date = datetime.datetime.now()
-    return render_template('calendar.html', date=today_date)
+    formatter = "%m/%d/%Y, %H:%M:%S"
+    today_date_time = datetime.datetime.now().strftime(formatter)
+    return render_template('calendar.html', date_time=today_date_time)
 
 
 @app.route("/api/get", methods=['GET'])
