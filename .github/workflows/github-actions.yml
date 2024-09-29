@@ -1,4 +1,4 @@
-name: GitHub Actions
+name: GitHub Actions CI/CD
 run-name: ${{ github.actor }} Testing
 on: [push]
 
@@ -7,13 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: run tests
-        with:
-          python-version: '3.11.9'
-        run: |
-          python -m pip install --upgrade pip
-          pip install pytest     
-          pip install -r requirements.txt
-          python -m pytest -x test_calc.py
+        run:  python -m pytest -x test_calc.py
       - name: Deployment
         if: success()
         run: echo "Deployed"
