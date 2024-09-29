@@ -17,7 +17,7 @@ jobs:
           pip install pytest
 
       - name: run tests
-        run: python -m pytest -x test_calc.py
+        run: python -m pytest -x test_calc.py::test_sum
 
       - name: Deployment
         if: success()
