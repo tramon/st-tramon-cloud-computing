@@ -40,14 +40,14 @@ def get_calendar():
 
 
 @app.route("/calc", methods=['GET'])
-def sum_up():
+def get_calc():
     sum_of_two = 0
     divide_result = 0
     return render_template('calc.html', sum_of_two=sum_of_two, divide_result=divide_result)
 
 
 @app.route("/sum", methods=['POST'])
-def sum_up():
+def calc_sum():
     calc_add_first = request.form['add_one']
     calc_add_second = request.form['add_two']
     sum_of_two = calc_add_first + calc_add_second
@@ -56,7 +56,7 @@ def sum_up():
 
 # This will produce failures on purpose to help with test failures
 @app.route("/divide", methods=['POST'])
-def divide():
+def calc_divide():
     divide_first = request.form['divide_one']
     divide_second = request.form['divide_two']
     divide_result = divide_first * divide_second
