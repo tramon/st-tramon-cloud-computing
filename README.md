@@ -48,3 +48,4 @@
 - https://www.youtube.com/watch?v=_COyD1CExKU
 - https://stackoverflow.com/questions/61620432/formatting-flask-table-output-with-html-on-python
 - https://flask.palletsprojects.com/en/3.0.x/api/#flask.json.jsonify
+- https://docs.github.com/en/actions
