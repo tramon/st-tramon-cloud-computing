@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tramon Flask Python calc</title>
+</head>
+<body>
+<h1>Tramon Flask Python calc</h1>
+<h2>Calc</h2>
+<form action="/sum" method="POST">
+    <label>
+        Sum of two:
+        <input type="number" name="add_one" placeholder="add first number"/>
+        <input type="number" name="add_two" placeholder="add second number"/>
+    </label>
+    <button type="submit">Sum</button>
+</form>
+<br>
+<h3>{{sum_of_two}}</h3>
+<br>
+<form action="/divide" method="POST">
+    <label>
+        A Tricky divide one by another:
+        <input type="number" name="divide_one" placeholder="divide number one"/>
+        <input type="number" name="divide_two" placeholder="divide number two"/>
+    </label>
+    <button type="submit">Divide</button>
+</form>
+<br>
+<h3>{{divide_result}}</h3>
+</body>
+</html>

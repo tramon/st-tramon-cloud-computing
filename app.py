@@ -39,6 +39,30 @@ def get_calendar():
     return render_template('calendar.html', date_time=today_date_time)
 
 
+@app.route("/calc", methods=['GET'])
+def sum_up():
+    sum_of_two = 0
+    divide_result = 0
+    return render_template('calc.html', sum_of_two=sum_of_two, divide_result=divide_result)
+
+
+@app.route("/sum", methods=['POST'])
+def sum_up():
+    calc_add_first = request.form['add_one']
+    calc_add_second = request.form['add_two']
+    sum_of_two = calc_add_first + calc_add_second
+    return render_template('calc.html', sum_of_two=sum_of_two)
+
+
+# This will produce failures on purpose to help with test failures
+@app.route("/divide", methods=['POST'])
+def divide():
+    divide_first = request.form['divide_one']
+    divide_second = request.form['divide_two']
+    divide_result = divide_first * divide_second
+    return render_template('calc.html', divide_result=divide_result)
+
+
 @app.route("/api/get", methods=['GET'])
 def get_all():
     json_dataset = dao.read_top_100()
