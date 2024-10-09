@@ -1,11 +1,16 @@
-name: GitHub Actions
-run-name: ${{ github.actor }} Testing
-on: [push]
+name: GitHub Actions  #Name of the Workflow
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+run-name: ${{ github.actor }} Testing
+on: #Name of the GitHub event that triggers the workflow
+  push: #On Push Event We need to take action
+    branches: #Now we need to specify the branch name
+      - main
+
+jobs: #Workflow run is made up of one or more jobs
+  test:
+    runs-on: ubuntu-latest #Through which Server OS we need to Work (type of machine to run the job on)
     steps:
+      #Using versioned actions
       - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -18,7 +23,9 @@ jobs:
 
       - name: run tests
         run: python -m pytest -x test_calc.py
-
+  build:
+    runs-on: ubuntu-latest
+    steps:
       - name: Deployment
         if: success()
         run: echo "Deployed"
