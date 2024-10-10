@@ -24,7 +24,7 @@ jobs: #Workflow run is made up of one or more jobs
       - name: run tests
         run: python -m pytest -x test_calc.py
   build:
-    if: success()       # || failure()
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Deployment
