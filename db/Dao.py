@@ -43,7 +43,7 @@ class Dao:
                                       "ORDER BY " +
                                       "t.id " +
                                       "FETCH FIRST 100 ROWS WITH TIES"):
-        return Dao.cursor.execute(select_all_query).fetchall()
+        return Dao.cursor.execute(select_all_query).fetchall()[0][0][0]
 
     @staticmethod
     def insert(task_id, task):
