@@ -1,5 +1,6 @@
 import os
 import psycopg
+import json
 from psycopg import sql
 from psycopg.rows import class_row
 from dataclasses import dataclass
@@ -43,7 +44,11 @@ class Dao:
                                       "ORDER BY " +
                                       "t.id " +
                                       "FETCH FIRST 100 ROWS WITH TIES"):
-        return Dao.cursor.execute(select_all_query).fetchall()
+        rows = Dao.cursor.execute(select_all_query).fetchall()
+        column_names = [desc[0] for desc in Dao.cursor.description]
+        result = [dict(zip(column_names, row)) for row in rows]
+
+        return json.dumps(result)
 
     @staticmethod
     def insert(task_id, task):
