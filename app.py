@@ -1,4 +1,4 @@
-from flask import Flask, json
+from flask import Flask, json, jsonify
 from flask import request, redirect
 from flask import render_template
 import datetime
@@ -13,7 +13,8 @@ dao = Dao()
 
 @app.route("/", methods=['GET'])
 def home():
-    json_dataset = dao.read_top_100()
+    dataset = dao.read_top_100()
+    json_dataset = jsonify(dataset)
     return render_template('index.html', objects=json_dataset)
 
 
