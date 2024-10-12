@@ -18,6 +18,7 @@ class Dao:
     field_id = 'id'
     field_task = 'task'
     field_status = 'status'
+    field_status_id = 'status_id'
 
     cursor = None
     connection = None
@@ -69,7 +70,7 @@ class Dao:
             table=sql.Identifier(Dao.table_name_tasks),
             fields=sql.SQL(",").join([
                 sql.Identifier(Dao.field_task),
-                sql.Identifier(Dao.field_status)]))
+                sql.Identifier(Dao.field_status_id)]))
         Dao.cursor.execute(query_add_task, [task, default_status])
         Dao.connection.commit()
 
