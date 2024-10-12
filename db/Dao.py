@@ -92,3 +92,10 @@ class Tasks:
 
     def __iter__(self):
         return iter((self.id, self.task, self.status))
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "task": self.task,
+            "status": self.status
+        }
