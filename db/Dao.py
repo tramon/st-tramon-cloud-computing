@@ -64,12 +64,13 @@ class Dao:
 
     @staticmethod
     def insert_without_id(task):
-        query_add_task = sql.SQL("INSERT INTO {table} ({fields}) VALUES (%s), 1").format(
+        default_status = 1
+        query_add_task = sql.SQL("INSERT INTO {table} ({fields}) VALUES (%s, %s)").format(
             table=sql.Identifier(Dao.table_name_tasks),
             fields=sql.SQL(",").join([
                 sql.Identifier(Dao.field_task),
                 sql.Identifier(Dao.field_status)]))
-        Dao.cursor.execute(query_add_task, [task])
+        Dao.cursor.execute(query_add_task, [task], default_status)
         Dao.connection.commit()
 
     @staticmethod
