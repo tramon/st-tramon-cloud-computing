@@ -85,3 +85,4 @@ class Dao:
 class Tasks:
     id: int
     task: str
+    status: str
