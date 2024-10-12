@@ -32,16 +32,16 @@ class Dao:
         Dao.cursor.row_factory = class_row(Tasks)
 
     @staticmethod
-    def read_top_100(select_all_query="SELECT" +
-                                      "t.id," +
-                                      "t.task," +
-                                      "s.status" +
-                                      "FROM" +
-                                      "public.tasks t" +
-                                      "JOIN" +
-                                      "public.status s ON t.status_id = s.id" +
-                                      "ORDER BY" +
-                                      "t.id" +
+    def read_top_100(select_all_query="SELECT " +
+                                      "t.id, " +
+                                      "t.task, " +
+                                      "s.status " +
+                                      "FROM " +
+                                      "public.tasks t " +
+                                      "JOIN " +
+                                      "public.status s ON t.status_id = s.id " +
+                                      "ORDER BY " +
+                                      "t.id " +
                                       "FETCH FIRST 100 ROWS WITH TIES"):
         return Dao.cursor.execute(select_all_query).fetchall()
 
