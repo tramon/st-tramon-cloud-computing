@@ -70,7 +70,7 @@ class Dao:
             fields=sql.SQL(",").join([
                 sql.Identifier(Dao.field_task),
                 sql.Identifier(Dao.field_status)]))
-        Dao.cursor.execute(query_add_task, [task], default_status)
+        Dao.cursor.execute(query_add_task, [task, default_status])
         Dao.connection.commit()
 
     @staticmethod
