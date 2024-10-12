@@ -68,7 +68,8 @@ def calc_divide():
 @app.route("/api/get", methods=['GET'])
 def get_all():
     json_dataset = dao.read_top_100()
-    return json_dataset
+    tasks_list = [task.to_dict() for task in json_dataset]
+    return jsonify(tasks_list)
 
 
 @app.route("/api/put", methods=['PUT'])
