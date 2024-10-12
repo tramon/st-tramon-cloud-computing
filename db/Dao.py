@@ -32,8 +32,16 @@ class Dao:
         Dao.cursor.row_factory = class_row(Tasks)
 
     @staticmethod
-    def read_top_100(select_all_query="SELECT * FROM tasks "
-                                      "ORDER BY id "
+    def read_top_100(select_all_query="SELECT" +
+                                      "t.id," +
+                                      "t.task," +
+                                      "s.status" +
+                                      "FROM" +
+                                      "public.tasks t" +
+                                      "JOIN" +
+                                      "public.status s ON t.status_id = s.id" +
+                                      "ORDER BY" +
+                                      "t.id" +
                                       "FETCH FIRST 100 ROWS WITH TIES"):
         return Dao.cursor.execute(select_all_query).fetchall()
 
@@ -49,7 +57,7 @@ class Dao:
 
     @staticmethod
     def insert_without_id(task):
-        query_add_task = sql.SQL("INSERT INTO {table} ({field}) VALUES (%s)").format(
+        query_add_task = sql.SQL("INSERT INTO {table} ({field}) VALUES (%s), 1").format(
             table=sql.Identifier(Dao.table_name_tasks),
             field=sql.Identifier(Dao.field_task))
         Dao.cursor.execute(query_add_task, [task])

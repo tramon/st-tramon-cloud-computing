@@ -37,8 +37,7 @@ def delete():
 def get_calendar():
     formatter = "%m/%d/%Y, %H:%M:%S"
     today_date_time = datetime.datetime.now().strftime(formatter)
-    #TODO zoned datetime
-    # or return in Date time format
+    # TODO return in Date time format
     return render_template('calendar.html', date_time=today_date_time)
 
 

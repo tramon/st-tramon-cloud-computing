@@ -35,12 +35,14 @@
     <tr>
         <th>id</th>
         <th>task</th>
+        <th>status</th>
     </tr>
     <tbody>
     {% for tasks in objects %}
     <tr>
         <td>{{tasks.id}}</td>
         <td>{{tasks.task}}</td>
+        <td>{{tasks.status}}</td>
     </tr>
     {% endfor %}
     </tbody>
