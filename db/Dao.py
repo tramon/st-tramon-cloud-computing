@@ -80,6 +80,10 @@ class Dao:
 
 @dataclass
 class Tasks:
-    id: int
-    task: str
-    status: str
+    def __init__(self, id, task, status):
+        self.id = id
+        self.task = task
+        self.status = status
+
+    def __iter__(self):
+        return iter((self.id, self.task, self.status))
