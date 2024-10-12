@@ -17,6 +17,7 @@ class Dao:
     table_name_tasks = 'tasks'
     field_id = 'id'
     field_task = 'task'
+    field_status = 'status'
 
     cursor = None
     connection = None
@@ -63,9 +64,11 @@ class Dao:
 
     @staticmethod
     def insert_without_id(task):
-        query_add_task = sql.SQL("INSERT INTO {table} ({field}) VALUES (%s), 1").format(
+        query_add_task = sql.SQL("INSERT INTO {table} ({fields}) VALUES (%s), 1").format(
             table=sql.Identifier(Dao.table_name_tasks),
-            field=sql.Identifier(Dao.field_task))
+            fields=sql.SQL(",").join([
+                sql.Identifier(Dao.field_task),
+                sql.Identifier(Dao.field_status)]))
         Dao.cursor.execute(query_add_task, [task])
         Dao.connection.commit()
 
