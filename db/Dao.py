@@ -1,6 +1,8 @@
 import os
 import psycopg
 import json
+
+from flask import jsonify
 from psycopg import sql
 from psycopg.rows import class_row
 from dataclasses import dataclass
@@ -45,10 +47,12 @@ class Dao:
                                       "t.id " +
                                       "FETCH FIRST 100 ROWS WITH TIES"):
         rows = Dao.cursor.execute(select_all_query).fetchall()
+        print(rows)
+
         column_names = [desc[0] for desc in Dao.cursor.description]
         result = [dict(zip(column_names, row)) for row in rows]
-
-        return json.dumps(result)
+        print(result)
+        return jsonify(result)
 
     @staticmethod
     def insert(task_id, task):
